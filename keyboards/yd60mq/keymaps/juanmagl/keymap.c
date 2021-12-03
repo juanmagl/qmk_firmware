@@ -179,8 +179,8 @@ void caps_finished(qk_tap_dance_state_t *state, void *user_data) {
     capstap_state.state = cur_dance(state);
     switch (capstap_state.state) {
         case TD_SINGLE_TAP:
-            // Enable BASE as only layer.
-            layer_move(_BASE_LAYER);
+            // Send CapsLock.
+            register_code(KC_CAPS_LOCK);
             break;
         case TD_SINGLE_HOLD:
         case TD_DOUBLE_TAP:
@@ -202,6 +202,7 @@ void caps_finished(qk_tap_dance_state_t *state, void *user_data) {
 void caps_reset(qk_tap_dance_state_t *state, void *user_data) {
     switch (capstap_state.state) {
         case TD_SINGLE_TAP:
+            unregister_code(KC_CAPS_LOCK);
             break;
         case TD_SINGLE_HOLD:
             layer_off(_FUNC_LAYER);
