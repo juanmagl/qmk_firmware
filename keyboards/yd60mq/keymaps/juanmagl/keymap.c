@@ -26,6 +26,7 @@ typedef struct {
 // Tap dance enums
 enum {
     FN_CTL,
+    CAPS_CTL,
     SOME_OTHER_DANCE
 };
 
@@ -42,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE_LAYER] = LAYOUT_60_iso(
         KC_ESC,  KC_1,    KC_2,     KC_3,     KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC,
         KC_TAB,  KC_Q,    KC_W,     KC_E,     KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC,
-        TD(FN_CTL),   KC_A,    KC_S,     KC_D,     KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_NUHS, KC_ENT,
+        TD(CAPS_CTL),   KC_A,    KC_S,     KC_D,     KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_NUHS, KC_ENT,
         KC_LSFT, KC_NUBS, KC_Z,     KC_X,     KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,          KC_RSFT,
         KC_LCTL, KC_LGUI, KC_LALT,                              KC_SPC,                             KC_RALT, TD(FN_CTL), KC_APP,  KC_RCTL
 	),
@@ -117,8 +118,14 @@ td_state_t cur_dance(qk_tap_dance_state_t *state) {
     } else return TD_UNKNOWN;
 }
 
-// Create an instance of 'td_tap_t' for the 'x' tap dance.
+// Create an instance of 'td_tap_t' for the 'fn' tap dance.
 static td_tap_t fntap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
+// Create an instance of 'td_tap_t' for the 'caps_lock' tap dance.
+static td_tap_t capstap_state = {
     .is_press_action = true,
     .state = TD_NONE
 };
@@ -168,6 +175,52 @@ void fn_reset(qk_tap_dance_state_t *state, void *user_data) {
     fntap_state.state = TD_NONE;
 }
 
+void caps_finished(qk_tap_dance_state_t *state, void *user_data) {
+    capstap_state.state = cur_dance(state);
+    switch (capstap_state.state) {
+        case TD_SINGLE_TAP:
+            // Enable BASE as only layer.
+            layer_move(_BASE_LAYER);
+            break;
+        case TD_SINGLE_HOLD:
+        case TD_DOUBLE_TAP:
+        case TD_DOUBLE_SINGLE_TAP:
+            // Enable FUNC layer.
+            layer_clear();
+            layer_on(_FUNC_LAYER);
+            break;
+        case TD_DOUBLE_HOLD:
+        case TD_TRIPLE_TAP:
+            layer_clear();
+            layer_on(_NUM_LAYER);
+            break;
+        default:
+            break;
+    }
+}
+
+void caps_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (capstap_state.state) {
+        case TD_SINGLE_TAP:
+            break;
+        case TD_SINGLE_HOLD:
+            layer_off(_FUNC_LAYER);
+            break;
+        case TD_DOUBLE_TAP:
+        case TD_DOUBLE_SINGLE_TAP:
+            break;
+        case TD_DOUBLE_HOLD:
+            layer_off(_NUM_LAYER);
+            break;
+        case TD_TRIPLE_TAP:
+            break;
+        default:
+            break;
+    }
+    capstap_state.state = TD_NONE;
+}
+
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [FN_CTL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, fn_finished, fn_reset)
+    [FN_CTL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, fn_finished, fn_reset),
+    [CAPS_CTL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, caps_finished, caps_reset)
 };
