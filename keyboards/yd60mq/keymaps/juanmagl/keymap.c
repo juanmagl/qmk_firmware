@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, KC_HOME,  KC_UP,    KC_END,  KC_PGUP, KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_PSCR, KC_SLCK, KC_PAUS,
         _______, KC_DEL,  KC_LEFT,  KC_DOWN,  KC_RGHT, KC_PGDN, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_BSPC, _______, _______, _______,
         _______, _______, _______,  _______,  KC_INS,  _______, _______, _______, _______, KC_INS,  _______, _______,          _______,
-        _______, _______, _______,                              _______,                            _______, _______, _______, _______
+        _______, KC_APP,  _______,                              _______,                            _______, _______, _______, _______
 	),
 
     //,: Numerical Layer
@@ -179,8 +179,12 @@ void caps_finished(qk_tap_dance_state_t *state, void *user_data) {
     capstap_state.state = cur_dance(state);
     switch (capstap_state.state) {
         case TD_SINGLE_TAP:
-            // Send CapsLock.
-            register_code(KC_CAPS_LOCK);
+            if( IS_LAYER_ON(_FUNC_LAYER) || IS_LAYER_ON(_NUM_LAYER)) {
+                // Do nothing here
+            } else {
+                // Send CapsLock.
+                register_code(KC_CAPS_LOCK);
+            }
             break;
         case TD_SINGLE_HOLD:
         case TD_DOUBLE_TAP:
@@ -202,7 +206,13 @@ void caps_finished(qk_tap_dance_state_t *state, void *user_data) {
 void caps_reset(qk_tap_dance_state_t *state, void *user_data) {
     switch (capstap_state.state) {
         case TD_SINGLE_TAP:
-            unregister_code(KC_CAPS_LOCK);
+            if( IS_LAYER_ON(_FUNC_LAYER) || IS_LAYER_ON(_NUM_LAYER)) {
+                // Return to base layer
+                layer_move(_BASE_LAYER);
+            } else {
+                // Unregister CapsLock.
+                unregister_code(KC_CAPS_LOCK);
+            }
             break;
         case TD_SINGLE_HOLD:
             layer_off(_FUNC_LAYER);
