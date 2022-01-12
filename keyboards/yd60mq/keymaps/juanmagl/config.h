@@ -4,4 +4,6 @@
 
 #define RGBLED_NUM 16
 
-#define TAPPING_TERM 175
+#define TAPPING_TERM 200
+
+#define HOLD_ON_OTHER_KEY_PRESS
