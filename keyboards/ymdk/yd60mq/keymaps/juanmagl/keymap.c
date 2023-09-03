@@ -4,6 +4,7 @@ enum layer_names {
     _BASE_LAYER,
     _FUNC_LAYER,
     _NUM_LAYER,
+    _IDLE_LAYER,
 };
 
 typedef enum {
@@ -63,6 +64,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, XXXXXXX, KC_HOME,  KC_UP,    KC_END,  KC_PGUP, XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PAST, XXXXXXX, XXXXXXX,
         _______, XXXXXXX, KC_LEFT,  KC_DOWN,  KC_RGHT, KC_PGDN, XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PMNS, KC_PEQL, KC_INS,  KC_PENT,
         _______, XXXXXXX, C(KC_Z),  C(KC_X),  C(KC_C), C(KC_V), XXXXXXX, XXXXXXX, KC_P0,   KC_PCMM, KC_PDOT, KC_PPLS,          _______,
+        _______, _______, _______,                              _______,                            _______, _______, _______, _______
+	),
+
+    //,: Idle Layer (for VIA's fourth layer)
+    [_IDLE_LAYER] = LAYOUT_60_iso(
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
         _______, _______, _______,                              _______,                            _______, _______, _______, _______
 	)
 
