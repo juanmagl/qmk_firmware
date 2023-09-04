@@ -9,9 +9,15 @@
 #define PERMISSIVE_HOLD
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 //#define HOLD_ON_OTHER_KEY_PRESS
 
 #define MK_3_SPEED
 =======
 //#define HOLD_ON_OTHER_KEY_PRESS
 >>>>>>> 790df7b3df (Updated  to QMK Fw 0.22.2)
+=======
+//#define HOLD_ON_OTHER_KEY_PRESS
+
+#define MK_3_SPEED
+>>>>>>> 11c7273d68 (Mouse keys set to constant mode)
