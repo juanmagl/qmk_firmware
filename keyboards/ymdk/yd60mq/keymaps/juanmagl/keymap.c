@@ -63,9 +63,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //,: Numerical Layer
     [_NUM_LAYER] = LAYOUT_60_iso(
         KC_GRV,  KC_A,    KC_B,    KC_C,    KC_D,    KC_E,    KC_F,    KC_P7,   KC_P8,   KC_P9,   KC_PSLS, XXXXXXX, KC_NUM,  KC_BSPC,
-        _______, _______, _______, _______, _______, _______, XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PAST, XXXXXXX, XXXXXXX,
-        _______, _______, _______, _______, _______, _______, XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PMNS, KC_PEQL, KC_INS,  KC_PENT,
-        _______, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, KC_P0,   KC_PCMM, KC_PDOT, KC_PPLS,          _______,
+        KC_CAPS, KC_ACL2, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PAST, XXXXXXX, XXXXXXX,
+        _______, KC_ACL1, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PMNS, KC_PEQL, KC_INS,  KC_PENT,
+        _______, KC_ACL0, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), XXXXXXX, XXXXXXX, KC_P0,   KC_PCMM, KC_PDOT, KC_PPLS,          _______,
         _______, _______, _______,                            _______,                            _______, _______, _______, _______
 	),
 
