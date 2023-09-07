@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
     ),
     [7] = LAYOUT_top(
-            RGB_M_P,           RGB_M_B,           RGB_M_R,
+            TO(5),             TO(6),             TO(7),
              RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI,
              RGB_RMOD,RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD,
              KC_TRNS, RGB_TOG, RGB_M_P, RGB_M_B, RGB_M_R
@@ -39,14 +39,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef ENCODER_MAP_ENABLE
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [0] =        { ENCODER_CCW_CW(KC_PGUP, KC_PGDN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT) },
-    [1] =        { ENCODER_CCW_CW(RGB_HUD, RGB_HUI), ENCODER_CCW_CW(RGB_SAD, RGB_SAI), ENCODER_CCW_CW(RGB_VAD, RGB_VAI) },
-    [2 ... 7] =  { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) }
+    [1] =        { ENCODER_CCW_CW(KC_1,    KC_3),    ENCODER_CCW_CW(KC_3,    KC_4),    ENCODER_CCW_CW(KC_MPRV, KC_MNXT) },
+    [2 ... 6] =  { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
+    [7] =        { ENCODER_CCW_CW(RGB_HUD, RGB_HUI), ENCODER_CCW_CW(KC_PGUP, KC_PGDN), ENCODER_CCW_CW(RGB_VAD, RGB_VAI) }
 };
 #endif
 
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     uint8_t ledindex = 0;
     switch(get_highest_layer(layer_state|default_layer_state)) {
+        case 7:
+            ledindex = 1; // Right encoder, left led
+            break;
+        case 6:
+            ledindex = 3; // Center encoder, left led
+            break;
+        case 5:
+            ledindex = 5; // Left encoder, left led
+            break;
         case 4:
             ledindex = 18; // Row 0, column 4
             break;
@@ -78,5 +88,5 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
 void keyboard_post_init_user(void) {
     rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
-    rgb_matrix_sethsv_noeeprom(HSV_OFF);
+    rgb_matrix_sethsv_noeeprom(HSV_BLUE / 20); // Reduce luminosity by 20x
 }
