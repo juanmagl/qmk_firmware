@@ -4,6 +4,7 @@ enum layer_names {
     _BASE_LAYER,
     _FUNC_LAYER,
     _NUM_LAYER,
+    _PROG_LAYER,
 };
 
 typedef enum {
@@ -32,27 +33,11 @@ enum {
     SOME_OTHER_DANCE
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 td_state_t cur_dance(tap_dance_state_t *state);
 
 // For the x tap dance. Put it here so it can be used in any keymap
 void fn_finished(tap_dance_state_t *state, void *user_data);
 void fn_reset(tap_dance_state_t *state, void *user_data);
-=======
-td_state_t cur_dance(qk_tap_dance_state_t *state);
-
-// For the x tap dance. Put it here so it can be used in any keymap
-void fn_finished(qk_tap_dance_state_t *state, void *user_data);
-void fn_reset(qk_tap_dance_state_t *state, void *user_data);
->>>>>>> 790df7b3df (Updated  to QMK Fw 0.22.2)
-=======
-td_state_t cur_dance(tap_dance_state_t *state);
-
-// For the x tap dance. Put it here so it can be used in any keymap
-void fn_finished(tap_dance_state_t *state, void *user_data);
-void fn_reset(tap_dance_state_t *state, void *user_data);
->>>>>>> 259221c03b (Updated to QMK Firmware 0.22.2)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -61,63 +46,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE_LAYER] = LAYOUT_60_iso(
         KC_ESC,       KC_1,    KC_2,     KC_3,     KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,    KC_EQL,  KC_BSPC,
         KC_TAB,       KC_Q,    KC_W,     KC_E,     KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,    KC_RBRC,
-<<<<<<< HEAD
-<<<<<<< HEAD
         TD(FN_CTL),   KC_A,    KC_S,     KC_D,     KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,    KC_NUHS, KC_ENT,
-=======
-        TD(CAPS_CTL), KC_A,    KC_S,     KC_D,     KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,    KC_NUHS, KC_ENT,
->>>>>>> 790df7b3df (Updated  to QMK Fw 0.22.2)
-=======
-        TD(FN_CTL),   KC_A,    KC_S,     KC_D,     KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,    KC_NUHS, KC_ENT,
->>>>>>> 931d03ca30 (removed capslock function from capslock key.)
         KC_LSFT,      KC_NUBS, KC_Z,     KC_X,     KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,             KC_RSFT,
         KC_LCTL,      KC_LGUI, KC_LALT,                              KC_SPC,                             KC_RALT, TD(FN_CTL), KC_RCTL, KC_APP
 	),
 
     //,: Function Layer
     [_FUNC_LAYER] = LAYOUT_60_iso(
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 81187edb59 (Modified tapdance to reach 4th layer)
         KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,
         KC_CAPS, KC_ACL2, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_PSCR, KC_SCRL, KC_PAUS,
         _______, KC_ACL1, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX, KC_INS,  _______,
         _______, KC_ACL0, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          _______,
         _______, _______, _______,                            _______,                            _______, _______, _______, _______
-<<<<<<< HEAD
-=======
-        KC_GRV,  KC_F1,   KC_F2,    KC_F3,    KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,
-        _______, XXXXXXX, KC_HOME,  KC_UP,    KC_END,  KC_PGUP, KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_PSCR, KC_SCRL, KC_PAUS,
-        _______, XXXXXXX, KC_LEFT,  KC_DOWN,  KC_RGHT, KC_PGDN, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX, KC_INS,  _______,
-        _______, XXXXXXX, C(KC_Z),  C(KC_X),  C(KC_C), C(KC_V), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          _______,
-        _______, _______, _______,                              _______,                            _______, _______, _______, _______
->>>>>>> 790df7b3df (Updated  to QMK Fw 0.22.2)
-=======
->>>>>>> 81187edb59 (Modified tapdance to reach 4th layer)
 	),
 
     //,: Numerical Layer
     [_NUM_LAYER] = LAYOUT_60_iso(
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         KC_GRV,  KC_A,    KC_B,    KC_C,    KC_D,    KC_E,    KC_F,    KC_P7,   KC_P8,   KC_P9,   KC_PSLS, XXXXXXX, KC_NUM,  KC_BSPC,
         KC_CAPS, KC_ACL2, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PAST, XXXXXXX, XXXXXXX,
         _______, KC_ACL1, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PMNS, KC_PEQL, KC_INS,  KC_PENT,
         _______, KC_ACL0, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), XXXXXXX, XXXXXXX, KC_P0,   KC_PCMM, KC_PDOT, KC_PPLS,          _______,
-=======
-        KC_GRV,  KC_A,    KC_B,    KC_C,    KC_D,    KC_E,    KC_F,    KC_P7,   KC_P8,   KC_P9,   KC_PSLS, XXXXXXX, KC_NUM,  KC_BSPC,
-<<<<<<< HEAD
-        _______, _______, _______, _______, _______, _______, XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PAST, XXXXXXX, XXXXXXX,
-        _______, _______, _______, _______, _______, _______, XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PMNS, KC_PEQL, KC_INS,  KC_PENT,
-        _______, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, KC_P0,   KC_PCMM, KC_PDOT, KC_PPLS,          _______,
->>>>>>> 81187edb59 (Modified tapdance to reach 4th layer)
-=======
-        KC_CAPS, KC_ACL2, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PAST, XXXXXXX, XXXXXXX,
-        _______, KC_ACL1, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PMNS, KC_PEQL, KC_INS,  KC_PENT,
-        _______, KC_ACL0, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), XXXXXXX, XXXXXXX, KC_P0,   KC_PCMM, KC_PDOT, KC_PPLS,          _______,
->>>>>>> 06b43c3004 (Mouse keys in layer 2 (num) by default)
         _______, _______, _______,                            _______,                            _______, _______, _______, _______
 	),
 
@@ -128,18 +76,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
         _______, _______, _______,                            _______,                            _______, _______, _______, _______
-<<<<<<< HEAD
-=======
-        KC_GRV,  KC_A,    KC_B,     KC_C,     KC_D,    KC_E,    KC_F,    KC_P7,   KC_P8,   KC_P9,   KC_PSLS, XXXXXXX, KC_NLCK, KC_BSPC,
-=======
-        KC_GRV,  KC_A,    KC_B,     KC_C,     KC_D,    KC_E,    KC_F,    KC_P7,   KC_P8,   KC_P9,   KC_PSLS, XXXXXXX, KC_NUM,  KC_BSPC,
->>>>>>> 259221c03b (Updated to QMK Firmware 0.22.2)
-        _______, XXXXXXX, KC_HOME,  KC_UP,    KC_END,  KC_PGUP, XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PAST, XXXXXXX, XXXXXXX,
-        _______, XXXXXXX, KC_LEFT,  KC_DOWN,  KC_RGHT, KC_PGDN, XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PMNS, KC_PEQL, KC_INS,  KC_PENT,
-        _______, XXXXXXX, C(KC_Z),  C(KC_X),  C(KC_C), C(KC_V), XXXXXXX, XXXXXXX, KC_P0,   KC_PCMM, KC_PDOT, KC_PPLS,          _______,
-        _______, _______, _______,                              _______,                            _______, _______, _______, _______
-=======
->>>>>>> 81187edb59 (Modified tapdance to reach 4th layer)
 	)
 
 };
@@ -171,15 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * For the third point, there does exist the 'TD_DOUBLE_SINGLE_TAP', however this is not fully tested
  *
  */
-<<<<<<< HEAD
-<<<<<<< HEAD
 td_state_t cur_dance(tap_dance_state_t *state) {
-=======
-td_state_t cur_dance(qk_tap_dance_state_t *state) {
->>>>>>> 790df7b3df (Updated  to QMK Fw 0.22.2)
-=======
-td_state_t cur_dance(tap_dance_state_t *state) {
->>>>>>> 259221c03b (Updated to QMK Firmware 0.22.2)
     if (state->count == 1) {
         // Obviating state->interrupted on first tap to allow for HOLD_ON_OTHER_KEY_PRESS behaviour
         //if (state->interrupted || !state->presed) return TD_SINGLE_TAP;
@@ -201,18 +129,9 @@ td_state_t cur_dance(tap_dance_state_t *state) {
     if (state->count == 3) {
         if (state->interrupted || !state->pressed) return TD_TRIPLE_TAP;
         else return TD_TRIPLE_HOLD;
-<<<<<<< HEAD
-<<<<<<< HEAD
     } else if (state->count == 4) {
         if (state->interrupted || !state->pressed) return TD_QUADRUPLE_TAP;
         else return TD_QUADRUPLE_HOLD;
-=======
->>>>>>> 790df7b3df (Updated  to QMK Fw 0.22.2)
-=======
-    } else if (state->count == 4) {
-        if (state->interrupted || !state->pressed) return TD_QUADRUPLE_TAP;
-        else return TD_QUADRUPLE_HOLD;
->>>>>>> 81187edb59 (Modified tapdance to reach 4th layer)
     } else return TD_UNKNOWN;
 }
 
@@ -228,15 +147,7 @@ static td_tap_t capstap_state = {
     .state = TD_NONE
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 void fn_finished(tap_dance_state_t *state, void *user_data) {
-=======
-void fn_finished(qk_tap_dance_state_t *state, void *user_data) {
->>>>>>> 790df7b3df (Updated  to QMK Fw 0.22.2)
-=======
-void fn_finished(tap_dance_state_t *state, void *user_data) {
->>>>>>> 259221c03b (Updated to QMK Firmware 0.22.2)
     fntap_state.state = cur_dance(state);
     switch (fntap_state.state) {
         case TD_SINGLE_TAP:
@@ -255,34 +166,17 @@ void fn_finished(tap_dance_state_t *state, void *user_data) {
             layer_clear();
             layer_on(_NUM_LAYER);
             break;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 81187edb59 (Modified tapdance to reach 4th layer)
         case TD_TRIPLE_HOLD:
         case TD_QUADRUPLE_TAP:
             layer_clear();
             layer_on(_PROG_LAYER);
             break;
-<<<<<<< HEAD
-=======
->>>>>>> 790df7b3df (Updated  to QMK Fw 0.22.2)
-=======
->>>>>>> 81187edb59 (Modified tapdance to reach 4th layer)
         default:
             break;
     }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 void fn_reset(tap_dance_state_t *state, void *user_data) {
-=======
-void fn_reset(qk_tap_dance_state_t *state, void *user_data) {
->>>>>>> 790df7b3df (Updated  to QMK Fw 0.22.2)
-=======
-void fn_reset(tap_dance_state_t *state, void *user_data) {
->>>>>>> 259221c03b (Updated to QMK Firmware 0.22.2)
     switch (fntap_state.state) {
         case TD_SINGLE_TAP:
             break;
@@ -297,35 +191,18 @@ void fn_reset(tap_dance_state_t *state, void *user_data) {
             break;
         case TD_TRIPLE_TAP:
             break;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 81187edb59 (Modified tapdance to reach 4th layer)
         case TD_TRIPLE_HOLD:
             layer_off(_PROG_LAYER);
             break;
         case TD_QUADRUPLE_TAP:
             break;
-<<<<<<< HEAD
-=======
->>>>>>> 790df7b3df (Updated  to QMK Fw 0.22.2)
-=======
->>>>>>> 81187edb59 (Modified tapdance to reach 4th layer)
         default:
             break;
     }
     fntap_state.state = TD_NONE;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 void caps_finished(tap_dance_state_t *state, void *user_data) {
-=======
-void caps_finished(qk_tap_dance_state_t *state, void *user_data) {
->>>>>>> 790df7b3df (Updated  to QMK Fw 0.22.2)
-=======
-void caps_finished(tap_dance_state_t *state, void *user_data) {
->>>>>>> 259221c03b (Updated to QMK Firmware 0.22.2)
     capstap_state.state = cur_dance(state);
     switch (capstap_state.state) {
         case TD_SINGLE_TAP:
@@ -348,34 +225,17 @@ void caps_finished(tap_dance_state_t *state, void *user_data) {
             layer_clear();
             layer_on(_NUM_LAYER);
             break;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 81187edb59 (Modified tapdance to reach 4th layer)
         case TD_TRIPLE_HOLD:
         case TD_QUADRUPLE_TAP:
             layer_clear();
             layer_on(_PROG_LAYER);
             break;
-<<<<<<< HEAD
-=======
->>>>>>> 790df7b3df (Updated  to QMK Fw 0.22.2)
-=======
->>>>>>> 81187edb59 (Modified tapdance to reach 4th layer)
         default:
             break;
     }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 void caps_reset(tap_dance_state_t *state, void *user_data) {
-=======
-void caps_reset(qk_tap_dance_state_t *state, void *user_data) {
->>>>>>> 790df7b3df (Updated  to QMK Fw 0.22.2)
-=======
-void caps_reset(tap_dance_state_t *state, void *user_data) {
->>>>>>> 259221c03b (Updated to QMK Firmware 0.22.2)
     switch (capstap_state.state) {
         case TD_SINGLE_TAP:
             if( IS_LAYER_ON(_FUNC_LAYER) || IS_LAYER_ON(_NUM_LAYER)) {
@@ -397,35 +257,18 @@ void caps_reset(tap_dance_state_t *state, void *user_data) {
             break;
         case TD_TRIPLE_TAP:
             break;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 81187edb59 (Modified tapdance to reach 4th layer)
         case TD_TRIPLE_HOLD:
             layer_off(_PROG_LAYER);
             break;
         case TD_QUADRUPLE_TAP:
             break;
-<<<<<<< HEAD
-=======
->>>>>>> 790df7b3df (Updated  to QMK Fw 0.22.2)
-=======
->>>>>>> 81187edb59 (Modified tapdance to reach 4th layer)
         default:
             break;
     }
     capstap_state.state = TD_NONE;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 tap_dance_action_t tap_dance_actions[] = {
-=======
-qk_tap_dance_action_t tap_dance_actions[] = {
->>>>>>> 790df7b3df (Updated  to QMK Fw 0.22.2)
-=======
-tap_dance_action_t tap_dance_actions[] = {
->>>>>>> 259221c03b (Updated to QMK Firmware 0.22.2)
     [FN_CTL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, fn_finished, fn_reset),
     [CAPS_CTL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, caps_finished, caps_reset)
 };
