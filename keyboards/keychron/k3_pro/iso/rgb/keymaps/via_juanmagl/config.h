@@ -1,3 +1,9 @@
 #define TAPPING_TERM 200
 
 #define PERMISSIVE_HOLD
+
+#define MK_3_SPEED
+
+#ifdef THREE_LAYER_PER_OS
+    #define DYNAMIC_KEYMAP_LAYER_COUNT 6
+#endif

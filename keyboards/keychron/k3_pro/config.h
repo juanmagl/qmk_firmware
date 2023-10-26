@@ -93,5 +93,15 @@
 #define DYNAMIC_KEYMAP_EEPROM_MAX_ADDR 2047
 
 /* Factory test keys */
+#ifdef RESET_KEY_DEL
+  #ifdef INVERT_OS_LAYER_ASSIGNMENT
+    #define FN_KEY1 KC_DEL
+    #define FN_KEY2 MO(3)
+  #else
+    #define FN_KEY1 MO(1)
+    #define FN_KEY2 KC_DEL
+  #endif
+#else
 #define FN_KEY1 MO(1)
 #define FN_KEY2 MO(3)
+#endif
