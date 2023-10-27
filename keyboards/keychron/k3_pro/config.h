@@ -93,15 +93,40 @@
 #define DYNAMIC_KEYMAP_EEPROM_MAX_ADDR 2047
 
 /* Factory test keys */
-#ifdef RESET_KEY_DEL
+#ifdef RESET_KEY_BULB
   #ifdef INVERT_OS_LAYER_ASSIGNMENT
-    #define FN_KEY1 KC_DEL
-    #define FN_KEY2 MO(3)
+    #ifdef THREE_LAYER_PER_OS
+      #define FN_KEY1 MO(4)
+      #define FN_KEY2 MO(2) // Keycode assigned to bulb key
+    #else
+      #define FN_KEY1 MO(3)
+      #define FN_KEY2 MO(1) // Keycode assigned to bulb key
+    #endif
   #else
-    #define FN_KEY1 MO(1)
-    #define FN_KEY2 KC_DEL
+    #ifdef THREE_LAYER_PER_OS
+      #define FN_KEY1 MO(1)
+      #define FN_KEY2 MO(5) // Keycode assigned to bulb key
+    #else
+      #define FN_KEY1 MO(1)
+      #define FN_KEY2 MO(3)  // Keycode assigned to bulb key
+    #endif
   #endif
 #else
-#define FN_KEY1 MO(1)
-#define FN_KEY2 MO(3)
+  #ifdef INVERT_OS_LAYER_ASSIGNMENT
+    #ifdef THREE_LAYER_PER_OS
+      #define FN_KEY1 MO(4)
+      #define FN_KEY2 MO(1)
+    #else
+      #define FN_KEY1 MO(3)
+      #define FN_KEY2 MO(1)
+    #endif
+  #else
+    #ifdef THREE_LAYER_PER_OS
+      #define FN_KEY1 MO(1)
+      #define FN_KEY2 MO(4)
+    #else
+      #define FN_KEY1 MO(1)
+      #define FN_KEY2 MO(3)
+    #endif
+  #endif
 #endif
